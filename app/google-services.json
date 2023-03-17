@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "527598932944",
+    "project_id": "atalk-b5a3c",
+    "storage_bucket": "atalk-b5a3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527598932944:android:832a3ab24ba4a506ee5fd5",
+        "android_client_info": {
+          "package_name": "com.ace.atalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527598932944-6c3od5a1g8ceq61ra28lkd4gce24tjif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGeaEMfwUxIp25mydbWzHKEQCjqAkh2Qw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527598932944-6c3od5a1g8ceq61ra28lkd4gce24tjif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
