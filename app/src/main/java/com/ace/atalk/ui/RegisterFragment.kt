@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -25,7 +26,8 @@ class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
     private lateinit var mAuth: FirebaseAuth
 
-    private lateinit var database: DatabaseReference
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +46,8 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mAuth = Firebase.auth
-        database = Firebase.database.reference
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.getReference("User")
         setOnclickListeners()
     }
 
@@ -75,7 +78,9 @@ class RegisterFragment : Fragment() {
                         if (user != null) {
                             accountId = user.uid
                         }
+                        databaseReference = firebaseDatabase.getReference(accountId)
                         gotoLogin()
+                        insertToDatabase(username,email, accountId)
 //                        updateUI(user)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -85,10 +90,13 @@ class RegisterFragment : Fragment() {
 //                        updateUI(null)
                     }
                 }
-
-            val user = User(username, email)
-            database.child("users").child(accountId).setValue(user)
+//            database.child("users").child(accountId).setValue(user)
         }
+    }
+
+    private fun insertToDatabase(username: String, email: String, accountId: String) {
+        val user = User(accountId, username, email, null, null)
+        databaseReference.setValue(user)
     }
 
     private fun gotoLogin() {
